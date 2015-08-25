@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<borderlayout id="topElement" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk"
+              apply="net.thinkbase.tunxi.ui.biz.master.ProductPriceComposer">
+  <center border="none" flex="true">
+    <grid id="_List" model="@{list}">
+      <columns sizable="true" menupopup="none">
+        <column label="品名" width="180px"
+                sortAscending="${cmp.asc.productName}"
+                sortDescending="${cmp.desc.productName}"/>
+        <column label="规格" width="90px"/>
+        <column label="计量单位" width="90px"/>
+        <column label="价格类型" width="90px"
+                sortAscending="${cmp.asc.name}"
+                sortDescending="${cmp.desc.name}"/>
+        <column label="价格" width="90px" align="right"
+                sortAscending="${cmp.asc.price}"
+                sortDescending="${cmp.desc.price}"/>
+        <column label="备注"/>
+      </columns>
+      <rows>
+        <row self="@{each='price'}">
+          <h:a href="javascript:void(0)">
+            <label value="@{price.productName}" tooltip="@{price.ID}" forward="onEdit"/>
+          </h:a>
+          <label value="@{price.spec}"/>
+          <label value="@{price.uom}"/>
+          <h:a href="javascript:void(0)">
+            <label value="@{price.name}" tooltip="@{price.ID}" forward="onEdit"/>
+          </h:a>
+          <label value="@{price.price}"/>
+          <label value="@{price.remark}"/>
+        </row>
+      </rows>
+    </grid>
+  </center>
+  <south border="none" title="编辑" size="220px" flex="false" collapsible="true">
+    <grid id="_Detail" fixedLayout="true" width="500px">
+        <columns sizable="false">
+          <column width="90px"/>
+          <column/>
+          <column width="90px"/>
+          <column/>
+        </columns>
+        <rows>
+          <row spans="4">
+            <hbox>
+              <button id="btnNew" label="新建" width="70px" forward="onNew"/>
+              <button id="btnDel" label="删除" width="70px" forward="onDelete"/>
+              <div width="333px" align="right">
+                <button id="btnSave" label="保存" width="70px" forward="onSave"/>
+              </div>
+            </hbox>
+          </row>
+          <row spans="1,3">
+            <label value="产品"/>
+              <vbox>
+              <textbox id="txtProdId" width="10px"
+                       value="@{item.prodId}" visible="false"/>
+              <bandbox id="selProd" width="373px"
+                       readonly="true" maxlength="80">
+                <bandpopup>
+  	              <listbox id="lstProds" width="367px"
+  	                       forward="onSelect=onProdSelect">
+                    <listhead>
+                      <listheader label="品名"/>
+                      <listheader label="规格"/>
+                    </listhead>
+                    <listitem forEach="${ProdList}"
+                              label="${each.code} - ${each.name}" value="${each.ID}">
+                      <listcell label="${each.spec}"/>
+                    </listitem>
+                  </listbox>
+                </bandpopup>
+              </bandbox>
+              </vbox>
+          </row>
+          <row>
+            <label value="价格类型"/>
+              <textbox width="140px" value="@{item.name}"
+                       maxlength="20" constraint="no empty"/>
+            <label value="价格"/>
+              <decimalbox format="#,##0.00" value="@{item.price}"
+                          width="140px" maxlength="20"
+                          constraint="no empty,no negative,no zero"/>
+          </row>
+          <row spans="1,3">
+            <label value="备注"/>
+              <textbox width="390px" value="@{item.remark}" rows="2" maxlength="200"/>
+          </row>
+        </rows>
+    </grid>
+  </south>
+</borderlayout>

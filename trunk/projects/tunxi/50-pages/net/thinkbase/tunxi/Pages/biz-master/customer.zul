@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<borderlayout xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk"
+              apply="net.thinkbase.tunxi.ui.biz.master.CustomerComposer">
+  <center border="none" flex="true">
+    <grid id="_List" model="@{list}">
+      <columns sizable="true" menupopup="none">
+        <column label="编号" width="90px"
+                sortAscending="${cmp.asc.code}"
+                sortDescending="${cmp.desc.code}"/>
+        <column label="全称" width="180px"
+                sortAscending="${cmp.asc.name}"
+                sortDescending="${cmp.desc.name}"/>
+        <column label="简称" width="90px"
+                sortAscending="${cmp.asc.abs}"
+                sortDescending="${cmp.desc.abs}"/>
+        <column label="助记码" width="90px"
+                sortAscending="${cmp.asc.hint}"
+                sortDescending="${cmp.desc.hint}"/>
+        <column label="备注"/>
+      </columns>
+      <rows>
+        <row self="@{each='cust'}">
+          <h:a href="javascript:void(0)">
+            <label value="@{cust.code}" tooltip="@{cust.ID}" forward="onEdit"/>
+          </h:a>
+          <label value="@{cust.name}"/>
+          <label value="@{cust.abs}"/>
+          <label value="@{cust.hint}"/>
+          <label value="@{cust.remark}"/>
+        </row>
+      </rows>
+    </grid>
+  </center>
+  <south border="none" title="编辑" size="240px" flex="false" collapsible="true">
+    <grid id="_Detail" fixedLayout="true" width="500px">
+        <columns sizable="false">
+          <column width="90px"/>
+          <column/>
+          <column width="90px"/>
+          <column/>
+        </columns>
+        <rows>
+          <row spans="4">
+            <hbox>
+              <button id="btnNew" label="新建" width="70px" forward="onNew"/>
+              <button id="btnDel" label="删除" width="70px" forward="onDelete"/>
+              <div width="333px" align="right">
+                <button id="btnSave" label="保存" width="70px" forward="onSave"/>
+              </div>
+            </hbox>
+          </row>
+          <row spans="1,1,2">
+            <label value="编号"/>
+              <textbox width="140px" value="@{item.code}"
+                       maxlength="20" constraint="no empty"/>
+            <div/>
+          </row>
+          <row spans="1,3">
+            <label value="全称"/>
+              <textbox width="390px" value="@{item.name}"
+                       maxlength="80" constraint="no empty"/>
+          </row>
+          <row>
+            <label value="简称"/>
+              <textbox width="140px" value="@{item.abs}" maxlength="20"/>
+            <label value="助记码"/>
+              <textbox width="140px" value="@{item.hint}" maxlength="20"/>
+          </row>
+          <row spans="1,3">
+            <label value="地址"/>
+              <textbox width="390px" value="@{item.address}" maxlength="200"/>
+          </row>
+          <row spans="1,3">
+            <label value="联系方式"/>
+              <textbox width="390px" value="@{item.contactInfo}" maxlength="200"/>
+          </row>
+          <row spans="1,3">
+            <label value="备注"/>
+              <textbox width="390px" value="@{item.remark}" rows="2" maxlength="200"/>
+          </row>
+        </rows>
+    </grid>
+  </south>
+</borderlayout>

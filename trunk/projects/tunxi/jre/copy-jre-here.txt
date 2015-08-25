@@ -1,0 +1,6 @@
+\bin
+  +- java.exe
+  +- ...
+\lib
+  +- rt.jar
+  +- ...

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<window title="修改密码" border="normal" width="360px"
+        mode="overlapped" position="center"
+        apply="net.thinkbase.tunxi.ui.biz.etc.PasswdComposer">
+  <grid>
+    <columns sizable="false">
+      <column />
+      <column width="240px"/>
+    </columns>
+    <rows>
+      <row>
+        <label value="登录用户"/>
+        <label id="lblName" value="${user.loginName}"/>
+      </row>
+      <row>
+        <label value="原有密码"/>
+        <textbox id="txtPwd" width="95%" type="password"/>
+      </row>
+      <row>
+        <label value="新密码输入"/>
+        <textbox id="txtPwdNew" width="95%" type="password"/>
+      </row>
+      <row>
+        <label value="新密码确认"/>
+        <textbox id="txtPwdConfirm" width="95%" type="password"/>
+      </row>
+      <row spans="2">
+    	<div width="95%" align="right">
+	        <button label="确定" forward="onChangePwd" />
+    	</div>
+      </row>
+    </rows>
+  </grid>
+
+</window>

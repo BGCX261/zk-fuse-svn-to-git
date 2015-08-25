@@ -1,0 +1,13 @@
+SELECT O.*,
+       P.CODE AS ProdCode, P.NAME as ProdName, P.SPEC as ProdSpec, P.UOM as ProdUom,
+       C.NAME as CustName
+ From (
+    SELECT H.ID AS OID, H.CUSTID, L.PRODID,
+           H.SERIALNO, H.DATE, H.STAGE, H.REMARK,
+           L.PRICE, L.QTY, L.PKGS, L.PRICE * L.QTY AS AMT, L.SEQ
+      From APP.CO H, APP.COL L
+     WHERE H.ID=L.HeaderID AND H.ID IN (${IDs})
+    ) AS O,
+    APP.PRODUCT AS P, APP.CUSTOMER AS C
+ WHERE P.ID=O.PRODID AND C.ID=O.CUSTID
+ ORDER BY DATE, SERIALNO, SEQ

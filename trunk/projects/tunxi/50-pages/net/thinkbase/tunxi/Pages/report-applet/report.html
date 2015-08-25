@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<meta http-equiv=content-type content="text/html; charset=UTF-8">
+		<title>报表打印</title>
+	</head>
+	<script src="/report-applet/deployJava.js"></script>
+	<body>
+      <center>
+		<script>
+		    if (window.outerWidth < 960) window.outerWidth="960";
+		    if (window.outerHeight < 600) window.outerHeight="600";
+		    
+		    var attributes = {codebase: '/report-applet',
+		                      code: 'EmbeddedViewerApplet.class',
+		                      archive: 'jasperreports-2.0.5-applet-with-applet.jar',
+		                      width: 945,
+		                      height: window.document.body.clientHeight*9/10} ;
+		    var parameters = {
+		        fontSize: 16,
+		        REPORT_URL: '/JRAppletViewer' + location.search
+		    } ;
+		    var version = '1.5' ;
+		    deployJava.runApplet(attributes, parameters, version);
+		</script>
+      </center>
+	</body>
+
+</html>

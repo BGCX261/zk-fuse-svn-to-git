@@ -1,0 +1,45 @@
+.leftmenu {
+	font-size: 9pt;
+	font-weight: bold;
+	background: #FFF;
+	
+	width: 100%;
+	margin: 0px;
+	margin-left: 3px;
+	border-style: solid solid none solid;
+	border-color: #BCD2E6;
+	border-size: 1px;
+	border-width: 1px;
+}
+
+.leftmenu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.leftmenu li a {
+  	voice-family: "\"}\""; 
+  	voice-family: inherit;
+  	height: 24px;
+	text-decoration: none;
+}	
+	
+.leftmenu li a:link, .leftmenu li a:visited {
+	color: #15428B;
+	display: block;
+	background:  url(../images/menu-background.gif);
+	padding: 8px 0 0 10px;
+}
+	
+.leftmenu li a:hover {
+	color: #627EB7;
+	background:  url(../images/menu-background.gif) 0 -32px;
+	padding: 8px 0 0 10px;
+}
+
+.leftmenu li a.selected {
+	color: #627EB7;
+	background:  url(../images/menu-background.gif) 0 -32px;
+	padding: 8px 0 0 10px;
+}

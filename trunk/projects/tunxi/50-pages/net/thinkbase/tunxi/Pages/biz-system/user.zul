@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<borderlayout xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk"
+              apply="net.thinkbase.tunxi.ui.biz.system.UserComposer">
+  <center border="none" flex="true">
+    <grid id="userList" model="@{users}">
+      <columns sizable="true" menupopup="none">
+        <column label="登录名" width="90px"
+                sortAscending="${cmp.asc.loginName}"
+                sortDescending="${cmp.desc.loginName}"/>
+        <column label="姓名" width="90px"
+                sortAscending="${cmp.asc.name}"
+                sortDescending="${cmp.desc.name}"/>
+        <column label="描述"/>
+        <column label="权限" width="70px" align="center"
+                sortAscending="${cmp.asc.admin}"
+                sortDescending="${cmp.desc.admin}"/>
+      </columns>
+      <rows>
+        <row self="@{each='user'}">
+          <h:a href="javascript:void(0)">
+            <label value="@{user.loginName}" forward="onUserSelect"/>
+          </h:a>
+          <label value="@{user.name}"/>
+          <label value="@{user.descr}"/>
+          <label value="@{user.admin, converter='net.thinkbase.tunxi.ui.biz.system.UserComposer$AdminTypeConverter'}"/>
+        </row>
+      </rows>
+    </grid>
+  </center>
+  <south border="none" title="编辑" size="150px" flex="false" collapsible="true">
+    <grid id="userDetail" fixedLayout="true" width="500px">
+        <columns sizable="false">
+          <column width="90px"/>
+          <column/>
+          <column width="90px"/>
+          <column/>
+        </columns>
+        <rows>
+          <row spans="4">
+            <hbox>
+              <button id="btnNew" label="新建" width="70px" forward="onAddUser"/>
+              <button id="btnDel" label="删除" width="70px" forward="onDelUser"/>
+              <div width="333px" align="right">
+                <button id="btnSave" label="保存" width="70px" forward="onSaveUser"/>
+              </div>
+            </hbox>
+          </row>
+          <row>
+            <label value="登录名"/>
+              <textbox id="loginName" width="140px" value="@{editing.loginName}"
+                       maxlength="20" constraint="no empty"/>
+            <label value="密码"/>
+              <textbox width="140px" type="password" value="@{editing.password}"
+                       maxlength="20" constraint="no empty"/>
+          </row>
+          <row spans="1,1,2">
+            <label value="姓名"/>
+              <textbox width="140px" value="@{editing.name}" maxlength="20"/>
+            <checkbox label="管理员权限" checked="@{editing.admin}"/>
+          </row>
+          <row spans="1,3">
+            <label value="描述"/>
+              <textbox width="390px" value="@{editing.descr}" maxlength="200"/>
+          </row>
+        </rows>
+    </grid>
+  </south>
+</borderlayout>

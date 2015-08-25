@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<window xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk"
+        id="editDialog"
+        title="要货单编辑" border="normal" width="600px"
+        mode="overlapped" position="center"
+        closable="false" sizable="false" maximizable="false"
+        apply="net.thinkbase.tunxi.ui.biz.process.POEditComposer">
+  <vbox>
+    <grid id="header" fixedLayout="true" width="580px">
+        <columns sizable="false">
+          <column width="80px"/>
+          <column width="270px"/>
+          <column width="80px"/>
+          <column/>
+        </columns>
+        <rows>
+          <row>
+            <label value="编号 "/>
+              <textbox id="txtSerialNo" value="@{po.serialNo}"
+                        width="260px" maxlength="20" constraint="no empty"/>
+            <label value="日期 "/>
+              <datebox id="date" value="@{po.date}"
+                       width="123px" constraint="no empty"/>
+          </row>
+          <row spans="1,3">
+            <label value="帐户 "/>
+              <hbox>
+	            <combobox value="@{po._Ext_AccName}" model="${banks}"
+	                      width="473px" readonly="true" forward="onChange=onBankChange"/>
+	            <intbox value="@{po.accId}" visible="false"/>
+	          </hbox>
+          </row>
+          <row spans="1,3">
+            <label value="备注 "/>
+              <textbox width="490px" rows="2" maxlength="200"
+                       value="@{po.remark}"/>
+          </row>
+          <row spans="1,1,2">
+            <label value="状态 "/>
+              <textbox width="260px" readonly="true" value="@{po._Ext_Stage}"/>
+            <div/>
+          </row>
+        </rows>
+    </grid>
+    <div width="580px" align="right">
+      <button id="btnNewLine" label="新增明细" forward="onNewLine"/>
+      <button id="btnDelLine" label="删除明细" forward="onDelLine"/>
+    </div>
+    <grid id="detail" width="580px" height="180px" model="@{pol}">
+        <columns>
+          <column label="No." width="9%"/>
+          <column label="产品" width="25%"/>
+          <column label="单位" width="10%"/>
+          <column label="规格" width="15%"/>
+          <column label="数量" width="10%" align="right"/>
+          <column label="实收" width="10%" align="right"/>
+          <column label="车号"/>
+        </columns>
+      <rows>
+        <row self="@{each='line'}">
+          <checkbox label="@{line.seq}"/>
+          <hbox>
+            <combobox value="@{line._Ext_ProdName}" model="${prods}"
+                      width="120px" readonly="true" forward="onChange=onProdChange"/>
+            <intbox value="@{line.prodId}" visible="false"/>
+          </hbox>
+          <textbox value="@{line.prodUom}" width="60px"
+                   maxlength="5" constraint="no empty"/>
+          <label value="@{line._Ext_ProdSpec}"/>
+          <decimalbox format="#,##0.00" value="@{line.planQty}"
+                      width="50px" constraint="no empty"/>
+          <decimalbox format="#,##0.00" value="@{line.qty}"
+                      width="50px" constraint="no empty"/>
+          <textbox value="@{line.truckNo}" width="80px"
+                      maxlength="20" constraint="no empty"/>
+        </row>
+      </rows>
+    </grid>
+    <div width="580px" align="right">
+      <button id="btnSubmit" label="保存" forward="onSubmit"/>
+      <button id="btnCancel" label="取消" forward="onCancel"/>
+    </div>
+  </vbox>
+</window>

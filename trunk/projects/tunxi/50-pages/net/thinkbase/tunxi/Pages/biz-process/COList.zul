@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<borderlayout xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk"
+              apply="net.thinkbase.tunxi.ui.biz.process.COListComposer">
+  <north size="30px" flex="false" collapsible="false">
+    <borderlayout>
+      <west border="none">
+        <hbox>
+          <button id="btnNew" label="新建" forward="onNew"/>
+          <button id="btnDel" label="删除" forward="onDel"/>
+          <space bar="true"/>
+          <button id="btnCFM" label="确认" forward="onConfirm"/>
+          <button id="btnIVL" label="作废" forward="onInvalidate"/>
+          <space bar="true"/>
+          <button id="btnPrint" label="打印" forward="onPrint"/>
+        </hbox>
+      </west>
+      <center border="none" flex="true"/>
+      <east border="none">
+        <hbox>
+          <button id="btnFind" label="查找" forward="onFind"/>
+        </hbox>
+      </east>
+    </borderlayout>
+  </north>
+  <center border="none" flex="true">
+    <grid id="list" model="${POList}">
+      <columns sizable="true" menupopup="none">
+        <column label="No." width="30px" align="center"/>
+        <column label="编号" width="90px"
+                sortAscending="${cmp.asc.serialNo}"
+                sortDescending="${cmp.desc.serialNo}"/>
+        <column label="客户" width="180px"
+                sortAscending="${cmp.asc._Ext_CustName}"
+                sortDescending="${cmp.desc._Ext_CustName}"/>
+        <column label="日期" width="90px"
+                sortAscending="${cmp.asc.date}"
+                sortDescending="${cmp.desc.date}"/>
+        <column label="状态" width="70px"
+                sortAscending="${cmp.asc._Ext_Stage}"
+                sortDescending="${cmp.desc._Ext_Stage}"/>
+        <column label="备注"/>
+      </columns>
+    </grid>
+  </center>
+</borderlayout>

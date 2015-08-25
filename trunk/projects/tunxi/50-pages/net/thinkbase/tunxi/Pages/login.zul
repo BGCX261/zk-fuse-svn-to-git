@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<window title="登录窗口" border="normal" width="360px"
+        mode="overlapped" position="center"
+        apply="net.thinkbase.tunxi.ui.LoginComposer">
+  <vbox>
+    <label style="font-size: 14pt; font-weight:bold"
+           value="${RUNTIME.productName}"/>
+    <label id="warningMsg" style="color:darkred; font-style:italic"/>
+  </vbox>
+  <grid>
+    <columns sizable="false">
+      <column />
+      <column width="240px"/>
+    </columns>
+    <rows>
+      <row>
+        <label value="用户名"/>
+        <textbox id="txtName" width="95%"/>
+      </row>
+      <row>
+        <label value="密码"/>
+        <textbox id="txtPwd" width="95%" type="password"/>
+      </row>
+      <row spans="2">
+    	<div width="95%" align="right">
+	        <button label="登录" forward="onLogin" />
+	        <button label="取消" forward="onCancel" />
+    	</div>
+      </row>
+    </rows>
+  </grid>
+
+</window>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<window title="抱歉" border="normal" width="360px"
+        mode="overlapped" position="center"
+        apply="net.thinkbase.tunxi.ui.SorryComposer">
+	<borderlayout height="100px">
+      <east border="none">
+	    <image src="images/logo_small.png"/>
+	  </east>
+      <center border="none" style="padding: 10px;">
+	    <label id="sorryMsg" style="font-size: 11pt; color: darkred"/>
+	  </center>
+    </borderlayout>
+</window>

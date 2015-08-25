@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<borderlayout xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk"
+              apply="net.thinkbase.tunxi.ui.MainComposer">
+  <north border="none" size="90px" collapsible="true">
+	<borderlayout>
+	  <west border="none"><image src="images/logo_small.png"/></west>
+	  <center border="none" style="padding: 20px">
+	    <label value="欢迎访问 ${RUNTIME.productName}" style="font-size:24pt; font-weight:bold"/>
+	  </center>
+	  <east border="none" size="200px" style="padding:10px; text-align:right; font-size:10pt">
+	    <h:div>
+	        <label value="${user.name}"/> |
+    	    <h:a href="javascript:void(0)" forward="onLogout">登出</h:a>
+	    </h:div>
+	  </east>
+	</borderlayout>
+  </north>
+  <west title="功能列表" size="150px" flex="true" splittable="true" minsize="100" maxsize="200" collapsible="true">
+	  <div>
+	    <style src="/css/leftmenu.css"/>
+		<tabbox mold="accordion-lite">
+		   <tabs>
+		      <tab label="${each.caption}" forEach="${menu.groups}"/>
+		   </tabs>
+		   <tabpanels>
+		      <tabpanel style="padding:0px" forEach="${menu.groups}">
+                <h:div class="leftmenu">
+                  <h:ul forEach="${each.menuItems}">
+                    <h:li><h:a href="javascript:void(0)" forward="onMenuClick(${each})">${each.caption}</h:a></h:li>
+                  </h:ul>
+                </h:div>
+              </tabpanel>
+           </tabpanels>
+        </tabbox>
+      </div>
+  </west>
+  <center autoscroll="true" flex="true">
+      <tabbox id="centerTab"><tabs/><tabpanels/></tabbox>
+  </center>
+</borderlayout>

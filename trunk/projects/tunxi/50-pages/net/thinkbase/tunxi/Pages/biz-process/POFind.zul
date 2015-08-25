@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<window xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk"
+        id="findDialog"
+        title="要货单查找" border="normal" width="360px"
+        mode="overlapped" position="center"
+        closable="true" sizable="false" maximizable="false"
+        apply="net.thinkbase.tunxi.ui.biz.process.POFindComposer">
+    <grid fixedLayout="true" width="100%">
+        <columns sizable="false">
+          <column width="90px"/>
+          <column/>
+          <column/>
+        </columns>
+        <rows>
+          <row spans="1,2">
+            <label value="关键字: "/>
+              <textbox id="keywords" width="240px" maxlength="20"/>
+          </row>
+          <row>
+            <label value="日期范围: "/>
+              <datebox id="dateFrom" width="97px"/>
+              <datebox id="dateTo" width="97px"/>
+          </row>
+          <row spans="3">
+            <div width="333px" align="right">
+              <button id="btnSubmit" label="确定" forward="onSubmit"/>
+              <button id="btnReset" label="重置" forward="onReset"/>
+            </div>
+          </row>
+        </rows>
+    </grid>
+</window>
